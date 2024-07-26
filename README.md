@@ -1,3 +1,5 @@
+**Note: This repo contains Runxi Yu's soft fork. Most users should use [delthas's upstream](https://git.sr.ht/~delthas/senpai) instead.**
+
 ![](res/icon.128.png) ![](res/logo.png)
 
 *Welcome home, desune~*
