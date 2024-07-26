@@ -1855,7 +1855,6 @@ func (app *App) formatMessage(s *irc.Session, ev irc.MessageEvent) (buffer strin
 	isNotice := ev.Command == "NOTICE"
 
 	content := strings.TrimSuffix(ev.Content, "\x01")
-	content = strings.TrimRightFunc(content, unicode.IsSpace)
 
 	isAction := false
 	if strings.HasPrefix(ev.Content, "\x01") {
