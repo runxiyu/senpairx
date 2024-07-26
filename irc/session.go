@@ -1672,7 +1672,7 @@ func (s *Session) handleMessageRegistered(msg Message, playback bool) (Event, er
 		}
 		return InfoEvent{
 			Prefix:  "User",
-			Message: fmt.Sprintf("%s has username %s and host %s (mask %s!%s@%s); their realname is %s", nick, username, host, nick, username, host, realname),
+			Message: fmt.Sprintf("%s!%s@%s %s", nick, username, host, realname),
 		}, nil
 	case rplWhoisserver:
 		var nick, server, serverInfo string
@@ -1699,7 +1699,7 @@ func (s *Session) handleMessageRegistered(msg Message, playback bool) (Event, er
 		}
 		return InfoEvent{
 			Prefix:  "User",
-			Message: fmt.Sprintf("%s was last seen with username %s and host %s (mask %s!%s@%s); their realname was %s", nick, username, host, nick, username, host, realname),
+			Message: fmt.Sprintf("%s!%s@%s %s", nick, username, host, realname),
 		}, nil
 	case rplWhoisidle:
 		var nick, idleText, signonText string
