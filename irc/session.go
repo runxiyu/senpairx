@@ -1681,7 +1681,7 @@ func (s *Session) handleMessageRegistered(msg Message, playback bool) (Event, er
 		}
 		return InfoEvent{
 			Prefix:  "User",
-			Message: fmt.Sprintf("%s is connected through the server %s (%s)", nick, server, serverInfo),
+			Message: fmt.Sprintf("%s server: %s (%s)", nick, server, serverInfo),
 		}, nil
 	case rplWhoisoperator:
 		var nick, opertype string
@@ -1716,7 +1716,7 @@ func (s *Session) handleMessageRegistered(msg Message, playback bool) (Event, er
 		}
 		idle := (time.Duration(idleSeconds) * time.Second).String()
 		t := time.Unix(signon, 0)
-		text := fmt.Sprintf("%s was idle for %s; they signed-on on %s", nick, idle, t.Local().Format("January 2 at 15:04"))
+		text := fmt.Sprintf("%s idle %s; sign-on %s", nick, idle, t.Local().Format("January 2 at 15:04"))
 		return InfoEvent{
 			Prefix:  "User",
 			Message: text,
@@ -1728,7 +1728,7 @@ func (s *Session) handleMessageRegistered(msg Message, playback bool) (Event, er
 		}
 		return InfoEvent{
 			Prefix:  "User",
-			Message: fmt.Sprintf("%s has joined channels: %s", nick, text),
+			Message: fmt.Sprintf("%s channels: %s", nick, text),
 		}, nil
 	case rplWhoisspecial:
 		var nick, text string
