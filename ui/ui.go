@@ -758,28 +758,6 @@ func (ui *UI) drawVerticalMemberList(vx *Vaxis, x0, y0, width, height int, membe
 	clearArea(vx, x0, y0, width, height)
 
 	if _, channel := ui.bs.Current(); channel == "" {
-		x := x0 + 1
-		printString(vx, &x, y0, Styled("Help", vaxis.Style{
-			Foreground: ui.config.Colors.Status,
-		}))
-		drawHorizontalLine(vx, x0, y0+1, width)
-		y0 += 2
-
-		lines := []string{
-			"→Add network",
-			"→Join channel",
-			"→Message user",
-		}
-		for i, line := range lines {
-			var st vaxis.Style
-			if i*2 == ui.memberClicked {
-				st.Attribute |= vaxis.AttrReverse
-			}
-			x := x0
-			printString(vx, &x, y0, Styled(line, st))
-			drawHorizontalLine(vx, x0, y0+1, width)
-			y0 += 2
-		}
 		return
 	}
 
