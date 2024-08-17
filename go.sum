@@ -6,8 +6,6 @@ github.com/containerd/console v1.0.4 h1:F2g4+oChYvBTsASRTz8NP6iIAi97J3TtSAsLbIFn
 github.com/containerd/console v1.0.4/go.mod h1:YynlIjWYF8myEu6sdkwKIvGQq+cOckRm6So2avqoYAk=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/delthas/go-libnp v0.0.0-20221222161248-0e45ece1f878 h1:v8W8eW7eb2bHFXBA80UKcoe0TvEu46NlTHSDRvgAbMU=
-github.com/delthas/go-libnp v0.0.0-20221222161248-0e45ece1f878/go.mod h1:aGVXnhWpDlt5U4SphG97o1gszctZKvBTXy320E8Buw4=
 github.com/delthas/go-localeinfo v0.0.0-20240607105203-b2e834fc307d h1:rH7dc+QFN4+Y8q5MxWUvt5PXsVpm1UKCEyuwf9BNO1s=
 github.com/delthas/go-localeinfo v0.0.0-20240607105203-b2e834fc307d/go.mod h1:sG54BxlyQgIskYURLrg7mvhoGBe0Qq12DNtYRALwNa4=
 github.com/disintegration/imaging v1.6.2 h1:w1LecBlG2Lnp8B3jk5zSuNqd7b4DXhcjwek1ei82L+c=

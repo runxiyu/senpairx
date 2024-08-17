@@ -3,7 +3,6 @@ package senpai
 import (
 	"errors"
 	"fmt"
-	"net/url"
 	"os"
 	"sort"
 	"strconv"
@@ -11,8 +10,6 @@ import (
 	"time"
 
 	"git.sr.ht/~rockorager/vaxis"
-	"github.com/delthas/go-libnp"
-	"golang.org/x/net/context"
 
 	"git.sr.ht/~delthas/senpai/irc"
 	"git.sr.ht/~delthas/senpai/ui"
@@ -68,10 +65,6 @@ func init() {
 			Usage:   "<message>",
 			Desc:    "send an action (reply to last query if sent from home)",
 			Handle:  commandDoMe,
-		},
-		"NP": {
-			Desc:   "send the current song that is being played on the system",
-			Handle: commandDoNP,
 		},
 		"UPLOAD": {
 			AllowHome: true,
@@ -480,17 +473,6 @@ func commandDoMe(app *App, args []string) (err error) {
 		app.win.AddLine(netID, buffer, line)
 	}
 	return nil
-}
-
-func commandDoNP(app *App, args []string) (err error) {
-	song, err := getSong()
-	if err != nil {
-		return fmt.Errorf("failed detecting the song: %v", err)
-	}
-	if song == "" {
-		return fmt.Errorf("no song was detected")
-	}
-	return commandDoMe(app, []string{fmt.Sprintf("np: %s", song)})
 }
 
 func commandDoUpload(app *App, args []string) (err error) {
@@ -1081,37 +1063,6 @@ func (app *App) handleInput(buffer, content string) error {
 			return errOffline
 		}
 	}
-}
-
-func getSong() (string, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
-	defer cancel()
-	info, err := libnp.GetInfo(ctx)
-	if err != nil {
-		return "", err
-	}
-	if info == nil {
-		return "", nil
-	}
-	if info.Title == "" {
-		return "", nil
-	}
-
-	var sb strings.Builder
-	fmt.Fprintf(&sb, "\x02%s\x02", info.Title)
-	if len(info.Artists) > 0 && info.Artists[0] != "" {
-		fmt.Fprintf(&sb, " by \x02%s\x02", info.Artists[0])
-	}
-	if info.Album != "" {
-		fmt.Fprintf(&sb, " from \x02%s\x02", info.Album)
-	}
-	if u, err := url.Parse(info.URL); err == nil {
-		switch u.Scheme {
-		case "http", "https":
-			fmt.Fprintf(&sb, " — %s", info.URL)
-		}
-	}
-	return sb.String(), nil
 }
 
 func getBouncerService(app *App) (service string, err error) {
