@@ -259,15 +259,6 @@ func init() {
 			Desc:      "mark yourself as back from being away",
 			Handle:    commandDoBack,
 		},
-		"SHRUG": {
-			Desc:    "send a shrug to the current channel ¯\\_(ツ)_/¯",
-			MaxArgs: maxArgsInfinite,
-			Handle:  commandDoShrug,
-		},
-		"TABLEFLIP": {
-			Desc:   "send a tableflip to the current channel (╯°□°)╯︵ ┻━┻",
-			Handle: commandDoTableFlip,
-		},
 		"VERSION": {
 			AllowHome: true,
 			MaxArgs:   1,
@@ -971,16 +962,6 @@ func commandSendMessage(app *App, target string, content string) error {
 		app.win.AddLine(netID, buffer, line)
 	}
 	return nil
-}
-
-func commandDoShrug(app *App, args []string) (err error) {
-	_, buffer := app.win.CurrentBuffer()
-	return commandSendMessage(app, buffer, `¯\_(ツ)_/¯`)
-}
-
-func commandDoTableFlip(app *App, args []string) (err error) {
-	_, buffer := app.win.CurrentBuffer()
-	return commandSendMessage(app, buffer, `(╯°□°)╯︵ ┻━┻`)
 }
 
 func (app *App) handleInput(buffer, content string) error {
